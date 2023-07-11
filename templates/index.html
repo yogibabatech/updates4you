@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome to Updates4you {% endblock title %}
+
+{% block description %} Best online product finder{% endblock description %}
+
+{% block body %}
+
+{% load static %}
+
+       
+<div class="mainSearch">
+ 
+    <div class="headContent">
+        <h1>Online Shopping Made Easy</h1>
+        <lottie-player id="animation1" src="https://assets6.lottiefiles.com/packages/lf20_hsojyr3p.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
+        <h2>Find here the best one</h2>
+    </div>
+    <form method="POST" action="/search">
+        {% csrf_token %}
+        <input type="text" id="mainSearch1" placeholder="Find the best product..." name="productq">
+        <input type="submit" onsubmit="loader()" class="searchButton" value="Go">
+    </form>
+</div>
+</div>
+
+
+{% endblock body %}

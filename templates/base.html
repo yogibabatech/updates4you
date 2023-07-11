@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+{% load static %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}{% endblock title %}</title>
+        <meta name="{% block description %}{% endblock description %}" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="{% static 'js/main.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <script>
+            
+        </script>
+    </head>
+    <body>
+
+    <div class="header">
+       <header>
+            <div class="brand">
+                <span class="fas fa-earth-americas fa-spin"></span>
+                <h2> <a class="sitelogo" href="/"> Updates4you </a> </h2>
+            </div>
+            <span class="fas fa-bars" id="menuIcon" onclick="toggle()"></span>
+            <div class="navbar" id="nav">
+                <div class="searchBox">
+                    <form method="POST" id="searchForm" action="/search">
+                        {% csrf_token %}
+                        <input type="text" id="searchText" placeholder="Find the best product..." name="productq" value="{{query}}">
+                        <button type="submit" id="searchIcon"> <span class="fas fa-search" onsubmit="loader()"  ></span></button>
+                    </form>
+                </div>
+                <ul>
+                    <li class="menuList">
+                       <a href="/"><span class="fas fa-house" id="headIcon"></span></a>
+                        <a href="/" id="linkMenu">Home</a>
+                    </li>
+                    <li class="menuList">
+                        <span href="/product" class="fas fa-cart-shopping" id="headIcon"></span>
+                        <a href="/product" id="linkMenu">Products</a>
+                    </li>
+                    <li class="menuList">
+                        <span href="/product" class="fa-solid fa-arrow-trend-up" id="headIcon"></span>
+                        <a href="/product" id="linkMenu">Trending</a>
+                    </li>
+                    <li class="menuList">
+                        <span "/about" class="fa-solid fa-circle-info" id="headIcon"></span>
+                        <a href="/about" id="linkMenu">About Us</a>
+                    </li>
+                </ul>
+            </div>
+       </header>
+    </div>
+    
+    <div id="loader" class="loaderweb">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://assets4.lottiefiles.com/datafiles/Hhw0wgYmETDTkxW/data.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>    
+    </div>
+    <div id="loader2" class="loaderweb2">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_zzbz9na6.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>    
+        <br>
+        <img src="{% static 'media/loader.gif' %}" alt="" srcset="">
+        <h2 id="loadingText">Please Wait for 1 Minute... <br> We're filtering the best product for you <br> It'll take just a minute <br> I can assure you a worth waiting  <br> </h2>
+    </div>
+       {% block body %}{% endblock body %} 
+
+       <footer>
+        <ul class="social_icon">
+            <li> <span class="fa-brands fa-facebook-f"></span></li>
+            <li> <span class="fa-brands fa-instagram"></span></li>
+            <li> <span class="fa-brands fa-youtube"></span></li>
+            <li> <span class="fa-brands fa-linkedin"></span></li>
+        </ul>
+        <hr width="10%" style="margin: auto; border: 0.1px solid rgba(255, 255, 255, 0.116)">
+        <ul class="footerMenu">
+            <li>
+                <span href="/" class="fas fa-house"></span>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <span href="/product" class="fas fa-cart-shopping"></span>
+                <a href="/product">Products</a>
+            </li>
+            <li>
+                <span href="/product" class="fa-solid fa-arrow-trend-up"></span>
+                <a href="/product">Trending</a>
+            </li>
+            <li>
+                <span href="/about" class="fa-solid fa-circle-info"></span>
+                <a href="/about">About Us</a>
+            </li>
+        </ul>
+        <hr width="10%" style="margin: auto; border: 0.1px solid rgba(255, 255, 255, 0.116)">
+
+        <p>
+            Copywrite &copy; 2023 Updates4u @ All Rights Reserved
+        </p>
+        
+       </footer>
+        <script>
+
+        document.getElementById('searchForm').addEventListener('submit', loader2)
+
+
+        </script>
+    
+    </body>
+</html>

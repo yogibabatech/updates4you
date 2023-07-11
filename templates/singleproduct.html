@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %} {{prod.product_name}} {% endblock title %}
+
+{% block description %} {{prod.product_name}} {% endblock description %}
+
+{% block body %}
+
+{% load static %}
+
+<div class="productScroll" >
+    <span class="far fa-caret-square-left"></span>
+    {% for s in scroll %}
+    <div class="productTop">
+        <img src="{{s.img_link}}" alt="" srcset="">
+        <h4 class="topHeading">{{s.product_name|truncatechars:15}}</h4>
+        <p class="topHeading">&#8377 {{s.price}}</p>
+        <form action="/product/{{s.id}}">
+        <button type="submit">
+            Buy Now
+        </button>
+    </form>
+    </div>
+    {% endfor %}
+
+    <span class="far fa-caret-square-right"></span>
+
+</div>
+
+<div class="single-body">
+
+    <div class="single-body-head">
+        <div class="single-body-1">
+            <div>
+                <img src="{{prod.img_link}}" alt="">
+            </div>
+
+        </div>
+        <div class="single-body-2">
+            <div class="single-title">
+                <h2>{{prod.product_name}}</h2>
+                <div class="rating-single"> <button> <span class="fa-solid fa-star"></span> {{prod.overall_ratings}} </button></div>
+                <div class="review-single"><p>{{prod.ratings}} Ratings & {{prod.reviews}} Reviews</p></div>
+                <div id="price-single">
+                    <h3> ₹{{prod.price}} </h3>
+                    <form action="/update/{{prod.id}}">
+                    <button id="update-button" type="submit"> <span class="fa fa-rotate fa-spin">
+                    </span> Update Latest Details</button>
+                </form>
+                </div>
+            </div>
+            <div class="recom-sec">
+                <button id="bt-001"> {{prod.prating}}% People Recommended This </button> <br>
+                <button id="bt-002"> {{prod.nrating}}% People Don't Recommend This </button>
+            </div>
+            <div class="platform-list">
+                <div>
+                    <div id="flipkart-buy-button">
+                        <img src="{% static 'media/flipkart-icon.png' %}" alt="" srcset="">
+                        <a href="{{prod.link}}">Buy on Flipkart @ &#8377 {{prod.price}}</a>
+                    </div>
+                    <div>
+                        <div>
+                            <button id="ratingFlip"> <span class="fa-solid fa-star"></span> {{prod.overall_ratings}} </button>
+                            <button id = "recomFLip"> {{prod.prating}}% Positive Recommendation </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="amazon-buy-button"> Buy on Amazon (Coming Soon) </button>
+                <button id="messo-buy-button"> Buy on Messho (Coming Soon) </button>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

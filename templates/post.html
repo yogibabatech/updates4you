@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Browse top curated products from the major websites in India | Flipkart | Amazon
+{% endblock title %}
+   
+
+
+{% block body %}
+                <div class="productArea">
+                    <div class="filterArea">
+                         <form method="POST">
+                             {% csrf_token %}
+                        <div class="wrapper">
+
+                            <h2>Price Range</h2>
+                            <p>Use slider or enter min and max price</p>
+                        <div class="price-input">
+                            <div class="field">
+                                <span>Min</span>
+                                <input type="number" class="input-min" name="min-input" value="{{minprice}}">
+                            </div>
+                            <div class="separator">- </div>
+                            <div class="field">
+                                <span>Max</span>
+                                <input type="number" class="input-max" name="max-input" value="{{maxprice}}">
+                            </div>
+                        </div>
+                        <div class="slider">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="range-input">
+                            <input type="range" class="range-min" min="0" max="10000" value="{{minprice}}">
+                            <input type="range" class="range-max" min="0"  max="10000" value="{{maxprice}}">
+                        </div>
+
+                        </div>
+
+                        <div>
+                            <h3> Filter by Total Ratings </h3>
+                            <table id="tblratings">
+                                <tr>
+                                    <td><input id="chk500" name="ratingFilter" type="radio" value="500"/><label for="chk500">500+</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="chk1000" name="ratingFilter" type="radio" value="1000"/><label for="chk1000">1000+</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="chk2000" name="ratingFilter" type="radio" value="2000"/><label for="chk2000">2000+</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="chk5000" name="ratingFilter" type="radio" value="5000"/><label for="chk5000">5000+</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="chk1000" name="ratingFilter" type="radio" value="10000"/><label for="chk1000">10000+</label></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div>
+                            <h3> Filter by Total Reviews </h3>
+                            <table id="tblreviews">
+                                <tr>
+                                    <td><input id="chkr500" name="reviewFilter" type="radio" value="500"/><label for="chkr500">500+</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="chkr1000" name="reviewFilter" type="radio" value="1000"/><label for="chkr1000">1000+</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="chkr2000" name="reviewFilter" type="radio" value="2000"/><label for="chkr2000">2000+</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="chkr5000" name="reviewFilter" type="radio" value="5000"/><label for="chkr5000">5000+</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="chkr1000" name="reviewFilter" type="radio" value="10000"/><label for="chkr1000">10000+</label></td>
+                                </tr>
+                            </table>
+                            <input type="hidden" value="{{query}}" name="query">
+                        </div>
+                        <div>
+                            <button type="submit"> Filter</button>
+                        </div>
+
+                     </form>
+                    </div>
+                
+
+            <div class="mainArea">
+                <div>
+                <h1>Browse Product</h1>
+                </div>
+                <div>
+                    <div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Search among best products">
+                            <input type="hidden" value="{{query}}" name="query">
+                            <select name="sort" id="sort" value="Select">
+                                <option value="brated">Best Rated</option>
+                                <option value="mreview">Most Reviews</option>
+                                <option value="borated">Best Overall</option>
+                            </select>
+                             <input type="submit" value="Sort">
+                         </form>
+                        
+                    </div>
+
+                    <div>
+                        {% for d in data %}
+                        <div class="card">
+                                <p class="oratings"> <span class="fa fa-star"></span> {{d.overall_ratings}}</p>
+                            <div class="img-link">
+                                <img src="{{d.img_link}}" alt="Product Image" >
+                            </div>
+                            <div class="detailsProduct">
+                                <h1>{{d.product_name|truncatechars:35}}</h1>
+                                    <p class="price"> &#8377 {{d.price}}</p>
+                                <form action="/product/{{d.id}}">
+                                    <input type="submit" value="Buy Now" />
+                            </div>
+                            </form>
+                          </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+<scrpt>
+
+</script>
+{% endblock body %}
